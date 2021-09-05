@@ -6,6 +6,14 @@ let isStarted = false;
 
 let timerIntervalId;
 
+const display = document.getElementById("display");
+
+function updateDisplayText() {
+  display.innerHTML = `${hour < 10 ? "0" + hour : hour}:${
+    minutes < 10 ? "0" + minutes : minutes
+  }:${seconds < 10 ? "0" + seconds : seconds}`;
+}
+
 const toggleTimer = () => {
   isStarted = !isStarted;
   return isStarted;
@@ -24,13 +32,7 @@ const calculateTime = () => {
     minutes = 0;
   }
 
-  // Guardar el elemento display en una variable y reusarla en vez de llamar a document.getElementById cada vez
-  // hacer que la linea 29 a 33 sea una función aparte para poder reutilizarla en varias funciones Pista: Te servirá para el botón clear
-  document.getElementById("display").innerHTML = `${
-    hour < 10 ? "0" + hour : hour
-  }:${minutes < 10 ? "0" + minutes : minutes}:${
-    seconds < 10 ? "0" + seconds : seconds
-  }`;
+  updateDisplayText();
 };
 
 const startStopButton = document.getElementById("startStop");
@@ -46,3 +48,18 @@ startStopButton.addEventListener("click", () => {
 });
 
 // Hacer que el botón reset pare el contador si esta iniciado y reinicie todo a 0
+//
+const resetButton = document.getElementById("reset");
+resetButton.onclick = function () {
+  clearInterval(timerIntervalId);
+  hour = 0;
+  minutes = 0;
+  seconds = 0;
+
+  if (isStarted) {
+    toggleTimer();
+    startStopButton.innerHTML = "Start";
+  }
+
+  updateDisplayText();
+};
