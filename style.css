@@ -1,12 +1,40 @@
+body {
+  background-color: #fbfbfb;
+}
+
 .container {
   height: 300px;
   width: 100%;
   display: grid;
   place-items: center;
+  margin-top: 100px;
+  border-radius: 20px;
+  background: linear-gradient(
+    179.7deg,
+    rgb(248, 126, 126) -0.5%,
+    rgb(251, 206, 143) 35.3%,
+    rgb(184, 252, 233) 67.2%,
+    rgb(118, 162, 229) 92.3%
+  );
 }
 
 #display {
   font-size: 50px;
+  font-family: "Amatic SC", cursive;
 }
 
+button {
+  display: inline-block;
+  margin: auto;
+  color: #fff;
+  background-color: #fc709b;
+  padding: 7px 15px;
+  border-radius: 5px;
+  font-family: "Amatic SC", cursive;
+}
 
+button:hover {
+  background-color: #fff;
+  color: #fc709b;
+  transition: 0.5ms ease-in-out;
+}
